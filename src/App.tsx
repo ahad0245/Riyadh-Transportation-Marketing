@@ -15,6 +15,8 @@ import {
   Phone,
   Mail,
   MapPin,
+  Layers,
+  Zap,
 } from "lucide-react";
 import "./App.css";
 
@@ -41,79 +43,80 @@ interface ContactFormData {
 
 type ReportItem = { title: string; href: string };
 
+// Data derived from "Business Plan" and "Briefing Document"
 const services: Service[] = [
   {
-    title: "Digital Bus Media Network",
+    title: "Exterior Bus Media",
     description:
-      "Transform buses into premium moving billboards using onboard LED screens and station placements.",
+      "High-impact mobile billboards traversing Riyadh. Utilizing IP65-rated, 5,000+ nits brightness LED panels for daylight visibility.",
     icon: <Bus className="w-8 h-8" />,
     features: [
-      "Onboard LED screens (inside & exterior-ready)",
-      "Station & terminal placements",
-      "Audience reach by route & time window",
-      "Brand-safe creative guidelines",
+      "Fleet of 672+ buses",
+      "Side panels (2.5m x 1m) & Rear displays",
+      "Geo-targeting capabilities",
+      "Estimated SAR 35-50M annual revenue",
     ],
   },
   {
-    title: "Campaign Planning & Partnerships",
+    title: "Interior Digital Signage",
     description:
-      "A complete go-to-market plan for advertisers, agencies, and city partners with measurable outcomes.",
+      "Captive audience engagement with high-definition screens targeting passengers with an average dwell time of 20-45 minutes.",
     icon: <Target className="w-8 h-8" />,
     features: [
-      "Inventory packages & sponsorship tiers",
-      "Agency & brand onboarding kits",
-      "Seasonal / event-based campaigns",
-      "Public-private collaboration model",
+      "1920x1080 resolution displays",
+      "Up to 4 screens per bus",
+      "Context-aware content delivery",
+      "Public information integration",
     ],
   },
   {
-    title: "Analytics & Performance Reporting",
+    title: "Station Network",
     description:
-      "Transparent reporting and insights to prove ROI and optimize campaigns.",
-    icon: <BarChart3 className="w-8 h-8" />,
+      "Premium digital inventory at high-traffic hubs. From large-format LED video walls to interactive kiosks at over 2,000 stops.",
+    icon: <MapPin className="w-8 h-8" />,
     features: [
-      "Campaign dashboards & reporting cadence",
-      "Reach estimates by route & ridership windows",
-      "Creative rotation & A/B testing plans",
-      "Post-campaign performance summaries",
+      "High-dwell time environments",
+      "Video walls at major hubs",
+      "Projected SAR 20-40M annual revenue",
+      "Station naming rights opportunities",
     ],
   },
   {
-    title: "Governance, Safety & Compliance",
+    title: "Corporate Governance",
     description:
-      "Operational readiness with clear governance, safety policies, and brand compliance standards.",
+      "A sophisticated three-entity structure (Holding, Asset, Media) ensuring operational efficiency and risk segregation.",
     icon: <Shield className="w-8 h-8" />,
     features: [
-      "Content policies & approval workflows",
-      "Operational SLAs for screen uptime",
-      "Privacy-minded measurement approach",
-      "Incident & escalation playbooks",
+      "SAPTCO (80%) & RATP Dev (20%) backed",
+      "Bank-arranged sinking fund",
+      "Comprehensive insurance package",
+      "Regulatory compliance workflows",
     ],
   },
 ];
 
+// Data derived from "Strategic Implementation Plan" and "Risk Analysis"
 const methodologyPillars: Pillar[] = [
   {
-    title: "Deploy",
+    title: "Foundation & Setup",
     description:
-      "Roll out digital screens and placements across priority routes and stations with an uptime-first approach.",
-    icon: <Bus className="w-12 h-12" />,
+      "Establishing the Riyadh Bus Holding, Asset, and Media companies. Securing technology partners like Planar & Leyard.",
+    icon: <Layers className="w-12 h-12" />,
   },
   {
-    title: "Monetize",
+    title: "Pilot & Deployment",
     description:
-      "Package inventory into sponsorship tiers and scalable ad products for brands and agencies.",
+      "A phased rollout starting with a 50-bus pilot to validate tech, followed by a 24-month full fleet installation.",
+    icon: <Zap className="w-12 h-12" />,
+  },
+  {
+    title: "Commercialization",
+    description:
+      "Yield management and sales activation to capture the $234M Saudi DOOH market, targeting a 24% IRR.",
     icon: <TrendingUp className="w-12 h-12" />,
-  },
-  {
-    title: "Measure",
-    description:
-      "Provide consistent reporting and insights to optimize creative, routes, and campaign schedules.",
-    icon: <BarChart3 className="w-12 h-12" />,
   },
 ];
 
-// ✅ Put your PDFs in /public/reports/... (convert DOCX → PDF for best browser support)
 const englishReports: ReportItem[] = [
   { title: "Digital Buses Riyadh (EN)", href: "/reports/en/Digital Buses Riyadh.pdf" },
   { title: "Briefing Document (EN)", href: "/reports/en/Briefing Document.pdf" },
@@ -135,7 +138,6 @@ const arabicReports: ReportItem[] = [
   { title: "دراسة جدوى حافلات الرياض", href: "/reports/ar/دراسة جدوى حافلات الرياض.pdf" },
   { title: "تقرير تحليل المخاطر", href: "/reports/ar/تقرير تحليل المخاطر.pdf" },
   { title: "اقتراح استثماري", href: "/reports/ar/اقتراح استثماري.pdf" },
-  
 ];
 
 function ReportColumn({
@@ -178,10 +180,6 @@ function ReportColumn({
           </li>
         ))}
       </ul>
-
-      {/* <p className="text-sm text-navy-500 mt-5">
-        If you want on-page previews, embed each PDF using an iframe under its link.
-      </p> */}
     </div>
   );
 }
@@ -267,8 +265,9 @@ export default function App() {
               <div>
                 <h1 className="text-2xl font-bold text-navy-800 leading-tight">
                   Riyadh Transportation Marketing
+
                 </h1>
-                <p className="text-sm text-navy-600">Digital Transit Media & Campaign Reporting</p>
+                <p className="text-sm text-navy-600">Digital Advertising Network</p>
               </div>
             </div>
 
@@ -278,37 +277,31 @@ export default function App() {
                 onClick={() => scrollToSection("about")}
                 className="text-navy-700 hover:text-gold-600 transition-colors duration-200 font-medium"
               >
-                About
+                Vision
               </button>
               <button
                 onClick={() => scrollToSection("reports")}
                 className="text-navy-700 hover:text-gold-600 transition-colors duration-200 font-medium"
               >
-                Reports
+                Documents
               </button>
               <button
                 onClick={() => scrollToSection("services")}
                 className="text-navy-700 hover:text-gold-600 transition-colors duration-200 font-medium"
               >
-                Services
+                Inventory
               </button>
               <button
                 onClick={() => scrollToSection("methodology")}
                 className="text-navy-700 hover:text-gold-600 transition-colors duration-200 font-medium"
               >
-                Approach
+                Strategy
               </button>
               <button
                 onClick={() => scrollToSection("map")}
                 className="text-navy-700 hover:text-gold-600 transition-colors duration-200 font-medium"
               >
-                Map
-              </button>
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="text-navy-700 hover:text-gold-600 transition-colors duration-200 font-medium"
-              >
-                Contact
+                Network Map
               </button>
             </div>
 
@@ -316,7 +309,7 @@ export default function App() {
               onClick={() => scrollToSection("contact")}
               className="hidden lg:flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-gold-500 to-gold-600 text-white rounded-lg hover:from-gold-600 hover:to-gold-700 transition-all duration-200 shadow-lg font-medium"
             >
-              <span>Get Started</span>
+              <span>Invest Now</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -326,7 +319,7 @@ export default function App() {
       {/* Hero Section */}
       <section
         id="hero"
-        className="relative pt-24 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-navy-900 via-navy-800 to-navy-900"
+        className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-navy-900 via-navy-800 to-navy-900"
       >
         <div className="absolute inset-0 bg-financial-pattern opacity-5"></div>
 
@@ -334,21 +327,21 @@ export default function App() {
           <div className="text-center py-20">
             <div className="mb-6">
               <span className="inline-block px-4 py-2 bg-gold-100 text-gold-800 rounded-full text-sm font-semibold mb-6">
-                Riyadh • Transit Media • Campaign Reporting
+                King Abdulaziz Project for Public Transport
               </span>
             </div>
 
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
-              Riyadh
-              <span className="block text-gold-400">Transportation Marketing</span>
+              Powering Riyadh’s
+              <span className="block text-gold-400">Digital Transit Future</span>
             </h1>
 
             <p className="text-xl md:text-2xl text-white/90 mb-6 max-w-4xl mx-auto leading-relaxed">
-              A modern transit media experience: digital screens, measurable campaigns, and bilingual reporting.
+              A SAR 1.3 Billion revenue opportunity monetizing the Riyadh bus fleet through state-of-the-art LED advertising infrastructure.
             </p>
 
             <p className="text-lg text-white/80 mb-12 max-w-3xl mx-auto leading-relaxed">
-              Explore the reports, watch the bus media video, and view the Riyadh transit map — all in one place.
+              Backed by SAPTCO & RATP Dev. Aligned with Vision 2030. 24% Projected IRR.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -356,7 +349,7 @@ export default function App() {
                 onClick={() => scrollToSection("reports")}
                 className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-gold-500 to-gold-600 text-white font-bold rounded-lg hover:from-gold-600 hover:to-gold-700 transition-all duration-300 shadow-2xl transform hover:scale-105"
               >
-                View Reports
+                View Feasibility Study
                 <ChevronRight className="w-5 h-5 ml-2" />
               </button>
 
@@ -364,7 +357,7 @@ export default function App() {
                 onClick={() => scrollToSection("map")}
                 className="inline-flex items-center px-8 py-4 border-2 border-white/30 text-white font-bold rounded-lg hover:bg-white/10 transition-all duration-300"
               >
-                Open Map
+                Network Map
                 <MapIcon className="w-5 h-5 ml-2" />
               </button>
             </div>
@@ -379,38 +372,36 @@ export default function App() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-5xl md:text-6xl font-bold text-navy-800 mb-8">
-              About Riyadh Transportation Marketing
+              Strategic Investment Opportunity
             </h2>
             <p className="text-2xl text-navy-600 max-w-4xl mx-auto leading-relaxed">
-              A transit media concept that turns buses and stations into a high-impact digital advertising network
-              — supported by structured plans, bilingual reports, and measurable outcomes.
+              Leveraging SAR 2.65 billion in existing transit assets to create a high-margin digital media network across Riyadh's 672 buses and 2,145 stations.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
             <div>
-              <h3 className="text-3xl font-bold text-navy-800 mb-6">What This Site Includes</h3>
+              <h3 className="text-3xl font-bold text-navy-800 mb-6">Operational Foundation</h3>
               <p className="text-lg text-navy-600 mb-6 leading-relaxed">
-                This website is designed as a one-stop hub: the video shows the concept in action, the reports are
-                separated by language for easy access, and the map provides geographic context for the transit network.
+                This initiative is built on the robust operational backbone of the Public Transportation Company (PTC), a joint venture between SAPTCO (80%) and French transit operator RATP Dev (20%). With SAR 704M in urban transport revenue (9M 2025), the foundation is secure.
               </p>
 
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="w-6 h-6 text-gold-600" />
-                  <span className="text-navy-700 font-medium">Video on the left (hero section)</span>
+                  <span className="text-navy-700 font-medium">Projected 24% Internal Rate of Return (IRR)</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="w-6 h-6 text-gold-600" />
-                  <span className="text-navy-700 font-medium">English reports in the middle</span>
+                  <span className="text-navy-700 font-medium">SAR 125M Annual Revenue by Year 5</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="w-6 h-6 text-gold-600" />
-                  <span className="text-navy-700 font-medium">Arabic reports on the right (RTL)</span>
+                  <span className="text-navy-700 font-medium">4.1 Year Payback Period</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="w-6 h-6 text-gold-600" />
-                  <span className="text-navy-700 font-medium">Transit map at the bottom</span>
+                  <span className="text-navy-700 font-medium">Risk Mitigation via Sinking Fund & Insurance</span>
                 </div>
               </div>
             </div>
@@ -419,20 +410,20 @@ export default function App() {
               <div className="bg-gradient-to-br from-navy-50 to-gold-50 p-8 rounded-2xl border border-navy-200">
                 <div className="grid grid-cols-2 gap-6">
                   <div className="text-center">
-                    <div className="text-4xl font-bold text-navy-800 mb-2">B2B</div>
-                    <div className="text-navy-600 font-medium">Advertisers & Agencies</div>
+                    <div className="text-4xl font-bold text-navy-800 mb-2">672+</div>
+                    <div className="text-navy-600 font-medium">Digital Buses</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-4xl font-bold text-navy-800 mb-2">KSA</div>
-                    <div className="text-navy-600 font-medium">Riyadh Focus</div>
+                    <div className="text-4xl font-bold text-navy-800 mb-2">2,145</div>
+                    <div className="text-navy-600 font-medium">Stations</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-4xl font-bold text-navy-800 mb-2">LED</div>
-                    <div className="text-navy-600 font-medium">Digital Placements</div>
+                    <div className="text-4xl font-bold text-navy-800 mb-2">SAR 285M</div>
+                    <div className="text-navy-600 font-medium">Projected NPV</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-4xl font-bold text-navy-800 mb-2">ROI</div>
-                    <div className="text-navy-600 font-medium">Measurable Campaigns</div>
+                    <div className="text-4xl font-bold text-navy-800 mb-2">$234M</div>
+                    <div className="text-navy-600 font-medium">2030 Market Size</div>
                   </div>
                 </div>
               </div>
@@ -442,48 +433,38 @@ export default function App() {
         </div>
       </section>
 
-      {/* Reports + Video (✅ video left, English middle, Arabic right) */}
+      {/* Reports + Video */}
       <section
         id="reports"
         className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-navy-50 to-gold-50"
       >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-10">
-            <h2 className="text-5xl md:text-6xl font-bold text-navy-800">Reports & Media</h2>
+            <h2 className="text-5xl md:text-6xl font-bold text-navy-800">Project Documentation</h2>
             <p className="text-xl text-navy-600 mt-4">
-              Video on the left • English reports in the middle • Arabic reports on the right
+              Access comprehensive feasibility studies, business plans, and risk analysis reports.
             </p>
           </div>
-           <div className="bg-white rounded-2xl shadow-xl border border-navy-100 p-6 h-full flex flex-col">
+            <div className="bg-white rounded-2xl shadow-xl border border-navy-100 p-6 h-full flex flex-col mb-8">
               <div className="flex items-center gap-3 mb-4">
                 <Bus className="w-6 h-6 text-gold-600" />
-                <h3 className="text-2xl font-bold text-navy-800">Bus Video</h3>
+                <h3 className="text-2xl font-bold text-navy-800">Media Concept Video</h3>
               </div>
 
               <div className="rounded-xl overflow-hidden border border-navy-100 bg-black">
-                <iframe width="100%" height="660" src="https://www.youtube.com/embed/i0R1F4_eGQM?si=jeU2KrKV5Qq6bIWG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                {/* <video
-                  src="https://youtu.be/i0R1F4_eGQM?si=jeU2KrKV5Qq6bIWG"
-                  controls
-                  playsInline
-                  className="w-full h-[360px] object-cover"
-                /> */}
+                {/* <iframe width="100%" height="660" src="https://www.youtube.com/embed/i0R1F4_eGQM?si=jeU2KrKV5Qq6bIWG" title="Riyadh Bus Media" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe> */}
+                 <video
+                  src="/video/1.mp4"
+                  controls
+                  playsInline
+                  className="w-full h-[660px] object-cover"
+                /> 
               </div>
-
-              <p className="text-sm text-navy-500 mt-4">
-                Put your MP4 here: <code>/public/videos/riyadh-bus.mp4</code>
-              </p>
             </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch mt-8">
-            {/* Left: Video */}
-           
-
-            {/* Middle: English Reports */}
-            <ReportColumn title="Reports (English)" items={englishReports} dir="ltr" />
-
-            {/* Right: Arabic Reports */}
-            <ReportColumn title="التقارير (العربية)" items={arabicReports} dir="rtl" lang="ar" />
+            <ReportColumn title="Investment Documents (English)" items={englishReports} dir="ltr" />
+            <ReportColumn title="وثائق الاستثمار (العربية)" items={arabicReports} dir="rtl" lang="ar" />
           </div>
         </div>
       </section>
@@ -493,10 +474,10 @@ export default function App() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-5xl md:text-6xl font-bold text-navy-800 mb-8">
-              Services & Capabilities
+              Inventory & Technology
             </h2>
             <p className="text-xl text-navy-600 max-w-4xl mx-auto">
-              Everything needed to launch, sell, operate, and report on a premium transit media network.
+              Deploying cutting-edge LED solutions from Planar and Leyard to monetize every touchpoint of the transit journey.
             </p>
           </div>
 
@@ -564,10 +545,10 @@ export default function App() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-5xl md:text-6xl font-bold text-navy-800 mb-8">
-              Our Approach
+              Strategic Implementation
             </h2>
             <p className="text-xl text-navy-600 max-w-4xl mx-auto">
-              A simple, practical approach to rolling out a transit media network with strong commercial outcomes.
+              A phased, risk-managed approach to deploying a SAR 230-280M infrastructure project over 24 months.
             </p>
           </div>
 
@@ -592,9 +573,9 @@ export default function App() {
       <section id="map" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-10">
-            <h2 className="text-4xl md:text-5xl font-bold text-navy-800">Riyadh Transit Map</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-navy-800">Riyadh Transit Network Coverage</h2>
             <p className="text-lg text-navy-600 mt-3">
-              Replace this embed with your official transit map (image or interactive map) when ready.
+              Covering 54 routes and over 2,100 stations across the Riyadh metropolitan area.
             </p>
           </div>
 
@@ -604,7 +585,7 @@ export default function App() {
               className="w-full h-[520px]"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps?q=Riyadh&output=embed"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d463878.294829379!2d46.54233777717462!3d24.725286591035544!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03890d489399%3A0xba974d1c98e79fd5!2sRiyadh%20Saudi%20Arabia!5e0!3m2!1sen!2sca!4v1714589252345!5m2!1sen!2sca"
             />
           </div>
         </div>
@@ -617,15 +598,15 @@ export default function App() {
       >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-bold mb-8">Contact</h2>
+            <h2 className="text-5xl md:text-6xl font-bold mb-8">Contact Investment Team</h2>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
-              Want to collaborate on transit media, sponsorships, or campaign reporting? Let’s talk.
+              For inquiries regarding the Riyadh Bus Media Company or asset leasing opportunities.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
-              <h3 className="text-3xl font-bold mb-8">Get in Touch</h3>
+              <h3 className="text-3xl font-bold mb-8">Headquarters</h3>
 
               <div className="space-y-6">
                 <div className="flex items-center space-x-4">
@@ -644,7 +625,7 @@ export default function App() {
                   </div>
                   <div>
                     <div className="font-semibold">Phone</div>
-                    <div className="text-white/80">+1–416-623-6345</div>
+                    <div className="text-white/80">+966 11 123 4567</div>
                   </div>
                 </div>
 
@@ -654,21 +635,21 @@ export default function App() {
                   </div>
                   <div>
                     <div className="font-semibold">Email</div>
-                    <div className="text-white/80">inquiries@riyadhtransit.com</div>
+                    <div className="text-white/80">invest@riyadhbusmedia.com</div>
                   </div>
                 </div>
               </div>
 
               <div className="mt-12">
-                <h4 className="text-xl font-bold mb-4">Topics</h4>
+                <h4 className="text-xl font-bold mb-4">Investment Areas</h4>
                 <div className="grid grid-cols-2 gap-3">
                   {[
-                    "Transit Media Rollout",
-                    "Sponsorship Packages",
-                    "Campaign Planning",
-                    "Performance Reporting",
-                    "Partnership Models",
-                    "Governance & Compliance",
+                    "Equity Participation",
+                    "Asset Leasing",
+                    "Debt Financing",
+                    "Technology Supply",
+                    "Insurance Coverage",
+                    "Advertising Sales",
                   ].map((t) => (
                     <div key={t} className="flex items-center space-x-2">
                       <CheckCircle className="w-4 h-4 text-gold-400" />
@@ -679,11 +660,7 @@ export default function App() {
               </div>
             </div>
 
-            {/* Existing ContactForm component */}
             <ContactForm />
-
-            {/* If you prefer your inline form logic, you can swap ContactForm back to the commented form.
-                Your handlers are still in this file (handleContactFormChange, handleContactFormSubmit). */}
           </div>
 
           {/* Optional: keep message UI if using inline form */}
@@ -710,16 +687,16 @@ export default function App() {
                 <Bus className="w-8 h-8 text-white" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold">Riyadh Transportation Marketing</h3>
-                <p className="text-white/60">Transit Media • Reports • Map</p>
+                <h3 className="text-2xl font-bold">Riyadh Bus Media Company</h3>
+                <p className="text-white/60">Digital Advertising Infrastructure</p>
               </div>
             </div>
 
             <div className="border-t border-white/20 pt-8">
               <p className="text-white/60 mb-4">© 2025 Riyadh Transportation Marketing. All rights reserved.</p>
-              {/* <p className="text-white/40 text-sm">
-                A bilingual transit marketing hub with video, reports, and route context.
-              </p> */}
+              <p className="text-white/40 text-sm">
+                Confidential Investment Proposal & Feasibility Data
+              </p>
             </div>
           </div>
         </div>
