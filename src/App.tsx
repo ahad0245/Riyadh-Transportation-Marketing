@@ -453,12 +453,15 @@ export default function App() {
 
               <div className="rounded-xl overflow-hidden border border-navy-100 bg-black">
                 {/* <iframe width="100%" height="660" src="https://www.youtube.com/embed/i0R1F4_eGQM?si=jeU2KrKV5Qq6bIWG" title="Riyadh Bus Media" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe> */}
-                 <video
-                  src="/video/1.mp4"
-                  controls
-                  playsInline
-                  className="w-full h-[660px] object-cover"
-                /> 
+                <video
+                  src="/video/1.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                  className="w-full h-auto object-cover"
+                /> 
               </div>
             </div>
 
@@ -687,7 +690,7 @@ export default function App() {
                 <Bus className="w-8 h-8 text-white" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold">Riyadh Bus Media Company</h3>
+                <h3 className="text-2xl font-bold">Riyadh Transportation Marketing</h3>
                 <p className="text-white/60">Digital Advertising Infrastructure</p>
               </div>
             </div>
