@@ -1,34 +1,22 @@
-import { useState } from 'react'
-import ContactForm from './components/ContactForm'
-import { 
-  Building2, 
-  Globe, 
-  TrendingUp, 
-  Shield, 
-  Users, 
-  Award, 
-  MapPin, 
-  Phone, 
-  Mail, 
-  ChevronRight,
+// App.tsx
+import { useState } from "react";
+import ContactForm from "./components/ContactForm";
+import {
+  Bus,
+  FileText,
+  Map as MapIcon,
+  TrendingUp,
+  Shield,
   BarChart3,
-  Landmark,
-  Briefcase,
   Target,
   CheckCircle,
-  ArrowRight
-} from 'lucide-react'
-import { Link } from "react-router-dom";
+  ArrowRight,
+  ChevronRight,
+  Phone,
+  Mail,
+  MapPin,
+} from "lucide-react";
 import "./App.css";
-import { teamMembers, getFirstNameSlug } from "./lib/team";
-
-// interface TeamMember {
-//   name: string;
-//   title: string;
-//   photo: string;
-//   credentials?: string;
-//   description: string;
-// }
 
 interface Service {
   title: string;
@@ -37,191 +25,11 @@ interface Service {
   features: string[];
 }
 
-interface Project {
+interface Pillar {
   title: string;
-  location: string;
-  value: string;
   description: string;
-  image: string;
-  status: string;
+  icon: React.ReactNode;
 }
-
-
-// const teamMembers: TeamMember[] = [
-//   {
-//     name: "Professor Hélyette Geman",
-//     title: "Founder & CFO",
-//     photo: "/images/team/helyette-geman.jpg",
-//     credentials:
-//       "Financial Engineer of the Year 2022, Research Professor at Johns Hopkins University",
-//     description:
-//       "World-renowned authority in financial engineering and commodity markets, combining deep academic research with practical structuring experience."
-//   },
- 
-//   {
-//     name: "Gareth Wiggan",
-//     title: "Director",
-//     photo: "/images/team/gareth-wiggan.jpg",
-//     description:
-//       "Specialist in infrastructure and cross-border project finance with more than 15 years of experience. Gareth has structured multi-billion-dollar capital solutions in energy, transport, and digital infrastructure for governments, sponsors, and institutional investors."
-//   },
-//    {
-//     name: "Kamran Tariq",
-//     title: "Chairman", // ✅ updated designation
-//     photo: "/images/team/Kami B&W.png",
-//     description:
-//       "Chairman with a track record of building data-driven financial platforms across Europe and the Middle East. Kamran oversees firm strategy, governance, and technology alignment, ensuring every solution blends quantitative rigor with real-world usability."
-//   },
-//   {
-//     name: "Mohammad Hamed",
-//     title: "CEO",
-//     photo: "/images/team/ba1.jpg",
-//     description:
-//       "Seasoned capital markets executive with deep Middle East coverage. Mohammad leads regional strategy, investor relationships, and origination, connecting global capital with high-growth opportunities across infrastructure, financial services, and real assets."
-//   },
-  
-//   {
-//     name: "Hana Mikhled Al-Husainat",
-//     title: "Chief Technology Officer", // ✅ updated designation
-//     photo: "/images/team/ba2.jpg",
-//     description:
-//       "Corporate finance and governance specialist turned technology leader. Hana designs and oversees the firm’s digital platforms, data architecture, and risk-aware workflows, enabling scalable, compliant solutions for banks, regulators, and regional enterprises."
-//   },
-//    {
-//     name: "Fei Xu",
-//     title: "Chartered Financial Analyst",
-//     photo: "/images/team/Fei Xu.png",
-//     description:
-//       "Capital markets professional and CFA charterholder with extensive experience in China’s fixed-income and private-equity markets. Fei focuses on credit research, portfolio construction, and cross-border capital flows between Asia and the Middle East."
-//   },
-//   {
-//     name: "Dr. D.K. MacFadden",
-//     title: "Medical Director & Innovation Specialist",
-//     photo: "/images/team/dk-macfadden.png",
-//     description:
-//       "Medical sector innovator with deep expertise in healthcare systems and insurance. Dr. MacFadden applies clinical insight to create new insurance-linked securities and risk-transfer structures, particularly in life and health portfolios."
-//   },
-//   {
-//     name: "Rodger Lodenguai",
-//     title: "Senior Executive Advisor",
-//     photo: "/images/team/Rodger B&W.png",
-//     credentials:
-//       "Visionary strategist in global tech, telecom, smart-city, and cybersecurity sectors with over 50,000 executive connections worldwide.",
-//     description:
-//       "Senior advisor to boards and founders across telecom, technology, smart-city, and cybersecurity verticals."
-//   },
- 
-  
-//   {
-//     name: "Rami Omran",
-//     title: "VP Middle East Operations",
-//     photo: "/images/team/omran1.jpg",
-//     description:
-//       "Capital markets and investment banking professional with a strong record in growth strategy and cross-border deal-making. Rami leads on-the-ground execution, local partnerships, and client coverage across key Middle Eastern markets."
-//   }
-//   ,
- 
-//  {
-//     name: "Minnu Kalapala",
-//     title: "In-House Legal Counsel",
-//     photo: "/images/team/ba3.jpg", // Replace with actual image path
-//     // credentials: "J.D. | Registered Attorney (Chicago)",
-//     description: "Legal expert overseeing corporate governance and regulatory compliance. As a registered attorney in Chicago holding a Juris Doctor degree, she provides specialized in-house counsel to ensure robust legal frameworks for financial operations."
-//   }
-// ];
-
-
-const services: Service[] = [
-  {
-    title: "Large-scale Infrastructure Financing",
-    description: "Structuring investments for major infrastructure projects worldwide with sophisticated financial instruments.",
-    icon: <Building2 className="w-8 h-8" />,
-    features: ["Multi-billion dollar project structuring", "Sovereign-level partnerships", "Cross-border financing solutions", "Public-private partnerships"]
-  },
-  {
-    title: "Asset Securitization",
-    description: "Converting illiquid assets into tradable securities using advanced insurance-backed models.",
-    icon: <BarChart3 className="w-8 h-8" />,
-    features: ["Insurance-backed securitization", "SPV structuring", "Credit enhancement", "Rating optimization"]
-  },
-  {
-    title: "Insurance-Linked Securities",
-    description: "Advanced insurance products for infrastructure project financing and risk transfer.",
-    icon: <Shield className="w-8 h-8" />,
-    features: ["Catastrophe bonds", "Parametric insurance", "Political risk coverage", "Performance bonds"]
-  },
-  {
-    title: "Cooperative-based Land Aggregation",
-    description: "Engineering large land banks through agricultural cooperatives for sustainable development.",
-    icon: <Globe className="w-8 h-8" />,
-    features: ["66.8M hectare portfolio", "Agricultural cooperative structures", "Sustainable development", "Land value optimization"]
-  }
-];
-
-const projects: Project[] = [
-  {
-    title: "Julius Nyerere International Airport Expansion",
-    location: "Tanzania",
-    value: "$20 Billion",
-    description: "Structured financing for major airport infrastructure expansion project",
-    image: "/images/projects/infrastructure-skyline.jpg",
-    status: "Completed"
-  },
-  {
-    title: "Shimoni Integrated Port Joint Venture",
-    location: "Kenya",
-    value: "$500 Million",
-    description: "30-year joint venture project for integrated port development",
-    image: "/images/projects/commercial-development.jpg",
-    status: "Active"
-  },
-  {
-    title: "Housing Securitization Program",
-    location: "Multi-jurisdictional",
-    value: "$2.5 Billion",
-    description: "Innovative housing finance securitization with insurance backing",
-    image: "/images/projects/housing-securitization.webp",
-    status: "Development"
-  },
-  {
-    title: "Infrastructure Construction Financing",
-    location: "International",
-    value: "$1.8 Billion",
-    description: "Multi-stage construction financing with completion guarantees",
-    image: "/images/projects/construction-financing.jpg",
-    status: "Active"
-  }
-];
-
-const insuranceProducts = [
-  "Credit Default Insurance",
-  "Performance Bonds", 
-  "Completion Insurance",
-  "Political Risk Insurance",
-  "Parametric Insurance",
-  "Insurance-Linked Securities (ILS)",
-  "Catastrophe Bonds",
-  "Professional Indemnity Insurance",
-  "Keyman Insurance"
-];
-
-const securitizationPillars = [
-  {
-    title: "Engineering Predictability",
-    description: "Taming revenue stream uncertainty through sophisticated modeling and risk analysis",
-    icon: <Target className="w-12 h-12" />
-  },
-  {
-    title: "Forging Securability", 
-    description: "Creating clean legal claims via Special Purpose Vehicles and structured transactions",
-    icon: <Landmark className="w-12 h-12" />
-  },
-  {
-    title: "Imposing Standardization",
-    description: "ISIN codes, credit ratings, and standardized documentation for market accessibility",
-    icon: <CheckCircle className="w-12 h-12" />
-  }
-];
 
 interface ContactFormData {
   firstName: string;
@@ -231,69 +39,216 @@ interface ContactFormData {
   projectDetails: string;
 }
 
-function App() {
+type ReportItem = { title: string; href: string };
+
+const services: Service[] = [
+  {
+    title: "Digital Bus Media Network",
+    description:
+      "Transform buses into premium moving billboards using onboard LED screens and station placements.",
+    icon: <Bus className="w-8 h-8" />,
+    features: [
+      "Onboard LED screens (inside & exterior-ready)",
+      "Station & terminal placements",
+      "Audience reach by route & time window",
+      "Brand-safe creative guidelines",
+    ],
+  },
+  {
+    title: "Campaign Planning & Partnerships",
+    description:
+      "A complete go-to-market plan for advertisers, agencies, and city partners with measurable outcomes.",
+    icon: <Target className="w-8 h-8" />,
+    features: [
+      "Inventory packages & sponsorship tiers",
+      "Agency & brand onboarding kits",
+      "Seasonal / event-based campaigns",
+      "Public-private collaboration model",
+    ],
+  },
+  {
+    title: "Analytics & Performance Reporting",
+    description:
+      "Transparent reporting and insights to prove ROI and optimize campaigns.",
+    icon: <BarChart3 className="w-8 h-8" />,
+    features: [
+      "Campaign dashboards & reporting cadence",
+      "Reach estimates by route & ridership windows",
+      "Creative rotation & A/B testing plans",
+      "Post-campaign performance summaries",
+    ],
+  },
+  {
+    title: "Governance, Safety & Compliance",
+    description:
+      "Operational readiness with clear governance, safety policies, and brand compliance standards.",
+    icon: <Shield className="w-8 h-8" />,
+    features: [
+      "Content policies & approval workflows",
+      "Operational SLAs for screen uptime",
+      "Privacy-minded measurement approach",
+      "Incident & escalation playbooks",
+    ],
+  },
+];
+
+const methodologyPillars: Pillar[] = [
+  {
+    title: "Deploy",
+    description:
+      "Roll out digital screens and placements across priority routes and stations with an uptime-first approach.",
+    icon: <Bus className="w-12 h-12" />,
+  },
+  {
+    title: "Monetize",
+    description:
+      "Package inventory into sponsorship tiers and scalable ad products for brands and agencies.",
+    icon: <TrendingUp className="w-12 h-12" />,
+  },
+  {
+    title: "Measure",
+    description:
+      "Provide consistent reporting and insights to optimize creative, routes, and campaign schedules.",
+    icon: <BarChart3 className="w-12 h-12" />,
+  },
+];
+
+// ✅ Put your PDFs in /public/reports/... (convert DOCX → PDF for best browser support)
+const englishReports: ReportItem[] = [
+  { title: "Digital Buses Riyadh (EN)", href: "/reports/en/Digital Buses Riyadh.pdf" },
+  { title: "Briefing Document (EN)", href: "/reports/en/Briefing Document.pdf" },
+  { title: "Riyadh Bus Digital Advertising Business Plan (EN)", href: "/reports/en/BUS - Riyhad  Business Plan.pdf" },
+  { title: "Theme – Riyadh Bus (EN)", href: "/reports/en/Theme Riyadh Bus.pdf" },
+  { title: "Business Case (EN)", href: "/reports/en/Business Case.pdf" },
+  { title: "Investment Proposal (EN)", href: "/reports/en/Investment Proposal.pdf" },
+  { title: "PMP - Bus Service (EN)", href: "/reports/en/PMP - Bus Service.pdf" },
+  { title: "Prospectus Riyadh Bus Co. (EN)", href: "/reports/en/Prospectus Riyadh Bus Co..pdf" },
+  { title: "Risk Analysis Report (EN)", href: "/reports/en/Risk Analysis Report.pdf" },
+  { title: "Riyadh Study (EN)", href: "/reports/en/Riyadh Study.pdf" },
+  { title: "Strategic Implementation Plan (EN)", href: "/reports/en/Strategic Implementation Plan.pdf" },
+];
+
+const arabicReports: ReportItem[] = [
+  { title: "حافلات الرياض تتحول إلى رقمية", href: "/reports/ar/حافلات الرياض تتحول إلى رقمية.pdf" },
+  { title: "حافلات الرياض تحصل على تجديد رقمي", href: "/reports/ar/حافلات الرياض تحصل على تجديد رقمي.pdf" },
+  { title: "خطة التنفيذ الاستراتيجية", href: "/reports/ar/خطة التنفيذ الاستراتيجية.pdf" },
+  { title: "دراسة جدوى حافلات الرياض", href: "/reports/ar/دراسة جدوى حافلات الرياض.pdf" },
+  { title: "تقرير تحليل المخاطر", href: "/reports/ar/تقرير تحليل المخاطر.pdf" },
+  { title: "اقتراح استثماري", href: "/reports/ar/اقتراح استثماري.pdf" },
+  
+];
+
+function ReportColumn({
+  title,
+  items,
+  dir = "ltr",
+  lang,
+}: {
+  title: string;
+  items: ReportItem[];
+  dir?: "ltr" | "rtl";
+  lang?: string;
+}) {
+  return (
+    <div
+      className="bg-white rounded-2xl shadow-xl border border-navy-100 p-6 h-full"
+      dir={dir}
+      lang={lang}
+    >
+      <div className="flex items-center gap-3 mb-4">
+        <FileText className="w-6 h-6 text-gold-600" />
+        <h3 className="text-2xl font-bold text-navy-800">{title}</h3>
+      </div>
+
+      <ul className="space-y-3">
+        {items.map((r) => (
+          <li
+            key={r.href}
+            className="flex items-start justify-between gap-3 border border-navy-100 rounded-xl p-3 hover:shadow-sm transition"
+          >
+            <span className="text-navy-700 font-medium leading-snug">{r.title}</span>
+            <a
+              href={r.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shrink-0 text-gold-700 hover:text-gold-800 font-semibold underline"
+            >
+              Open
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      {/* <p className="text-sm text-navy-500 mt-5">
+        If you want on-page previews, embed each PDF using an iframe under its link.
+      </p> */}
+    </div>
+  );
+}
+
+export default function App() {
   const [activeService, setActiveService] = useState(0);
   const [contactForm, setContactForm] = useState<ContactFormData>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    company: '',
-    projectDetails: ''
+    firstName: "",
+    lastName: "",
+    email: "",
+    company: "",
+    projectDetails: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitMessage, setSubmitMessage] = useState('');
+  const [submitMessage, setSubmitMessage] = useState("");
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    const el = document.getElementById(sectionId);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
-  const handleContactFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleContactFormChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setContactForm(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setContactForm((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleContactFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitMessage('');
-    
+    setSubmitMessage("");
+
     try {
-      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/contact-form`, {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`
-  },
-  body: JSON.stringify(contactForm)
-});
-  
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/contact-form`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          },
+          body: JSON.stringify(contactForm),
+        }
+      );
+
       const result = await response.json();
 
       if (result.success) {
         setSubmitSuccess(true);
-        setSubmitMessage('Thank you for your inquiry! We will contact you within 24 hours.');
+        setSubmitMessage("Thank you! We will contact you within 24 hours.");
         setContactForm({
-          firstName: '',
-          lastName: '',
-          email: '',
-          company: '',
-          projectDetails: ''
+          firstName: "",
+          lastName: "",
+          email: "",
+          company: "",
+          projectDetails: "",
         });
       } else {
         setSubmitSuccess(false);
-        setSubmitMessage(result.error?.message || 'An error occurred. Please try again.');
+        setSubmitMessage(result.error?.message || "An error occurred. Please try again.");
       }
     } catch (error) {
       setSubmitSuccess(false);
-      setSubmitMessage('Network error. Please check your connection and try again.');
-      console.error('Contact form error:', error);
+      setSubmitMessage("Network error. Please check your connection and try again.");
+      console.error("Contact form error:", error);
     } finally {
       setIsSubmitting(false);
     }
@@ -307,46 +262,58 @@ function App() {
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-4">
               <div className="w-12 h-12 bg-gradient-to-br from-navy-600 to-navy-800 rounded-lg flex items-center justify-center">
-                <Landmark className="w-8 h-8 text-white" />
+                <Bus className="w-8 h-8 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-navy-800 leading-tight">FE Corporation</h1>
-                <p className="text-sm text-navy-600">Financial Engineering Corporation</p>
+                <h1 className="text-2xl font-bold text-navy-800 leading-tight">
+                  Riyadh Transportation Marketing
+                </h1>
+                <p className="text-sm text-navy-600">Digital Transit Media & Campaign Reporting</p>
               </div>
             </div>
-            
+
             {/* Desktop Navigation */}
             <div className="hidden lg:flex space-x-8">
-              <button onClick={() => scrollToSection('about')} className="text-navy-700 hover:text-gold-600 transition-colors duration-200 font-medium">
+              <button
+                onClick={() => scrollToSection("about")}
+                className="text-navy-700 hover:text-gold-600 transition-colors duration-200 font-medium"
+              >
                 About
               </button>
-              <button onClick={() => scrollToSection('team')} className="text-navy-700 hover:text-gold-600 transition-colors duration-200 font-medium">
-                Team
+              <button
+                onClick={() => scrollToSection("reports")}
+                className="text-navy-700 hover:text-gold-600 transition-colors duration-200 font-medium"
+              >
+                Reports
               </button>
-              <button onClick={() => scrollToSection('services')} className="text-navy-700 hover:text-gold-600 transition-colors duration-200 font-medium">
+              <button
+                onClick={() => scrollToSection("services")}
+                className="text-navy-700 hover:text-gold-600 transition-colors duration-200 font-medium"
+              >
                 Services
               </button>
-              <button onClick={() => scrollToSection('projects')} className="text-navy-700 hover:text-gold-600 transition-colors duration-200 font-medium">
-                Portfolio
+              <button
+                onClick={() => scrollToSection("methodology")}
+                className="text-navy-700 hover:text-gold-600 transition-colors duration-200 font-medium"
+              >
+                Approach
               </button>
-              <button onClick={() => scrollToSection('methodology')} className="text-navy-700 hover:text-gold-600 transition-colors duration-200 font-medium">
-                Methodology
+              <button
+                onClick={() => scrollToSection("map")}
+                className="text-navy-700 hover:text-gold-600 transition-colors duration-200 font-medium"
+              >
+                Map
               </button>
-              <button onClick={() => scrollToSection('contact')} className="text-navy-700 hover:text-gold-600 transition-colors duration-200 font-medium">
+              <button
+                onClick={() => scrollToSection("contact")}
+                className="text-navy-700 hover:text-gold-600 transition-colors duration-200 font-medium"
+              >
                 Contact
               </button>
-              <a
-  href="https://z9i3vm4sng5r.space.minimax.io/"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="text-navy-700 hover:text-gold-600 transition-colors duration-200 font-medium"
->
-  Calculator
-</a>
             </div>
 
             <button
-              onClick={() => scrollToSection('contact')}
+              onClick={() => scrollToSection("contact")}
               className="hidden lg:flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-gold-500 to-gold-600 text-white rounded-lg hover:from-gold-600 hover:to-gold-700 transition-all duration-200 shadow-lg font-medium"
             >
               <span>Get Started</span>
@@ -357,51 +324,53 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <section id="hero" className="relative pt-24 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-navy-900 via-navy-800 to-navy-900">
+      <section
+        id="hero"
+        className="relative pt-24 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-navy-900 via-navy-800 to-navy-900"
+      >
         <div className="absolute inset-0 bg-financial-pattern opacity-5"></div>
-        
+
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="text-center py-20">
             <div className="mb-6">
               <span className="inline-block px-4 py-2 bg-gold-100 text-gold-800 rounded-full text-sm font-semibold mb-6">
-                Toronto, Canada • Est. 2015
+                Riyadh • Transit Media • Campaign Reporting
               </span>
             </div>
-            
-            <h1 className="text-6xl md:text-8xl font-bold text-white mb-8 leading-tight">
-              Financial
-              <span className="block text-gold-400">Engineering</span>
+
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
+              Riyadh
+              <span className="block text-gold-400">Transportation Marketing</span>
             </h1>
-            
-            <p className="text-2xl md:text-3xl text-white/90 mb-6 max-w-4xl mx-auto leading-relaxed">
-              Transforming Assets into Global Opportunities
+
+            <p className="text-xl md:text-2xl text-white/90 mb-6 max-w-4xl mx-auto leading-relaxed">
+              A modern transit media experience: digital screens, measurable campaigns, and bilingual reporting.
             </p>
-            
-            <p className="text-xl text-white/80 mb-12 max-w-3xl mx-auto leading-relaxed">
-              We engineer the predictable, securable, and standardized financial instruments that power tomorrow's infrastructure.
+
+            <p className="text-lg text-white/80 mb-12 max-w-3xl mx-auto leading-relaxed">
+              Explore the reports, watch the bus media video, and view the Riyadh transit map — all in one place.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <button
-                onClick={() => scrollToSection('services')}
+                onClick={() => scrollToSection("reports")}
                 className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-gold-500 to-gold-600 text-white font-bold rounded-lg hover:from-gold-600 hover:to-gold-700 transition-all duration-300 shadow-2xl transform hover:scale-105"
               >
-                Our Expertise
+                View Reports
                 <ChevronRight className="w-5 h-5 ml-2" />
               </button>
-              
+
               <button
-                onClick={() => scrollToSection('projects')}
+                onClick={() => scrollToSection("map")}
                 className="inline-flex items-center px-8 py-4 border-2 border-white/30 text-white font-bold rounded-lg hover:bg-white/10 transition-all duration-300"
               >
-                View Portfolio
-                <ArrowRight className="w-5 h-5 ml-2" />
+                Open Map
+                <MapIcon className="w-5 h-5 ml-2" />
               </button>
             </div>
           </div>
         </div>
-        
-        {/* Geometric Pattern Overlay */}
+
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
       </section>
 
@@ -409,161 +378,146 @@ function App() {
       <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-bold text-navy-800 mb-8">About FE Corporation</h2>
+            <h2 className="text-5xl md:text-6xl font-bold text-navy-800 mb-8">
+              About Riyadh Transportation Marketing
+            </h2>
             <p className="text-2xl text-navy-600 max-w-4xl mx-auto leading-relaxed">
-              We are the architects of capital market transformation, specializing in the engineering that converts illiquid, real-world assets into predictable, securable, and standardized financial instruments.
+              A transit media concept that turns buses and stations into a high-impact digital advertising network
+              — supported by structured plans, bilingual reports, and measurable outcomes.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
             <div>
-              <h3 className="text-3xl font-bold text-navy-800 mb-6">Our Mission</h3>
+              <h3 className="text-3xl font-bold text-navy-800 mb-6">What This Site Includes</h3>
               <p className="text-lg text-navy-600 mb-6 leading-relaxed">
-                Financial Engineering Corporation represents the pinnacle of sophisticated financial structuring. Based in Toronto, Canada, we bridge the gap between complex real-world assets and global capital markets through innovative engineering solutions.
+                This website is designed as a one-stop hub: the video shows the concept in action, the reports are
+                separated by language for easy access, and the map provides geographic context for the transit network.
               </p>
-              <p className="text-lg text-navy-600 mb-8 leading-relaxed">
-                Our approach combines deep technical expertise with practical market knowledge, enabling us to structure transactions that seemed impossible just years ago.
-              </p>
-              
+
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="w-6 h-6 text-gold-600" />
-                  <span className="text-navy-700 font-medium">Insurance-backed securitization expertise</span>
+                  <span className="text-navy-700 font-medium">Video on the left (hero section)</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="w-6 h-6 text-gold-600" />
-                  <span className="text-navy-700 font-medium">Multi-jurisdictional regulatory navigation</span>
+                  <span className="text-navy-700 font-medium">English reports in the middle</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="w-6 h-6 text-gold-600" />
-                  <span className="text-navy-700 font-medium">Sovereign-level partnership structuring</span>
+                  <span className="text-navy-700 font-medium">Arabic reports on the right (RTL)</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="w-6 h-6 text-gold-600" />
-                  <span className="text-navy-700 font-medium">Infrastructure project financing</span>
+                  <span className="text-navy-700 font-medium">Transit map at the bottom</span>
                 </div>
               </div>
             </div>
-            
+
             <div className="relative">
               <div className="bg-gradient-to-br from-navy-50 to-gold-50 p-8 rounded-2xl border border-navy-200">
                 <div className="grid grid-cols-2 gap-6">
                   <div className="text-center">
-                    <div className="text-4xl font-bold text-navy-800 mb-2">$25B+</div>
-                    <div className="text-navy-600 font-medium">Assets Structured</div>
+                    <div className="text-4xl font-bold text-navy-800 mb-2">B2B</div>
+                    <div className="text-navy-600 font-medium">Advertisers & Agencies</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-4xl font-bold text-navy-800 mb-2">50+</div>
-                    <div className="text-navy-600 font-medium">Projects Completed</div>
+                    <div className="text-4xl font-bold text-navy-800 mb-2">KSA</div>
+                    <div className="text-navy-600 font-medium">Riyadh Focus</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-4xl font-bold text-navy-800 mb-2">15+</div>
-                    <div className="text-navy-600 font-medium">Countries</div>
+                    <div className="text-4xl font-bold text-navy-800 mb-2">LED</div>
+                    <div className="text-navy-600 font-medium">Digital Placements</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-4xl font-bold text-navy-800 mb-2">AAA</div>
-                    <div className="text-navy-600 font-medium">Credit Ratings</div>
+                    <div className="text-4xl font-bold text-navy-800 mb-2">ROI</div>
+                    <div className="text-navy-600 font-medium">Measurable Campaigns</div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
       </section>
 
-      {/* Team Section */}
-    <section
-  id="team"
-  className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-navy-50 to-gold-50"
->
-  <div className="max-w-7xl mx-auto">
-    <div className="text-center mb-16">
-      <h2 className="text-5xl md:text-6xl font-bold text-navy-800 mb-8">
-        Leadership Team
-      </h2>
-      <p className="text-xl text-navy-600 max-w-3xl mx-auto">
-        World-class expertise in financial engineering, combining academic
-        rigor with practical market experience.
-      </p>
-    </div>
-
-    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
-      {teamMembers.map((member) => {
-        const slug = getFirstNameSlug(member);
-
-        return (
-          <div
-            key={member.name}
-            className="bg-white p-8 rounded-2xl shadow-xl border border-navy-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 h-full"
-          >
-            <div className="text-center flex flex-col h-full">
-              <img
-                src={member.photo}
-                alt={member.name}
-                className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-gold-200 shadow-lg"
-              />
-              <h3 className="text-2xl font-bold text-navy-800 mb-2">
-                {member.name}
-              </h3>
-              <div className="text-lg font-semibold text-gold-600 mb-4">
-                {member.title}
+      {/* Reports + Video (✅ video left, English middle, Arabic right) */}
+      <section
+        id="reports"
+        className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-navy-50 to-gold-50"
+      >
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-5xl md:text-6xl font-bold text-navy-800">Reports & Media</h2>
+            <p className="text-xl text-navy-600 mt-4">
+              Video on the left • English reports in the middle • Arabic reports on the right
+            </p>
+          </div>
+           <div className="bg-white rounded-2xl shadow-xl border border-navy-100 p-6 h-full flex flex-col">
+              <div className="flex items-center gap-3 mb-4">
+                <Bus className="w-6 h-6 text-gold-600" />
+                <h3 className="text-2xl font-bold text-navy-800">Bus Video</h3>
               </div>
 
-              {member.credentials && (
-                <div className="bg-gold-50 p-3 rounded-lg mb-4">
-                  <p className="text-sm font-semibold text-gold-800">
-                    {member.credentials}
-                  </p>
-                </div>
-              )}
+              <div className="rounded-xl overflow-hidden border border-navy-100 bg-black">
+                <iframe width="100%" height="660" src="https://www.youtube.com/embed/i0R1F4_eGQM?si=jeU2KrKV5Qq6bIWG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                {/* <video
+                  src="https://youtu.be/i0R1F4_eGQM?si=jeU2KrKV5Qq6bIWG"
+                  controls
+                  playsInline
+                  className="w-full h-[360px] object-cover"
+                /> */}
+              </div>
 
-              <p className="text-navy-600 leading-relaxed flex-1">
-                {member.description}
+              <p className="text-sm text-navy-500 mt-4">
+                Put your MP4 here: <code>/public/videos/riyadh-bus.mp4</code>
               </p>
-
-              {/* Button to the detailed profile page */}
-              <Link
-                to={`/${slug}`}
-                className="mt-6 inline-flex items-center justify-center px-4 py-2 rounded-lg bg-gradient-to-r from-gold-500 to-gold-600 text-white text-sm font-semibold hover:from-gold-600 hover:to-gold-700 transition-all"
-              >
-                View profile
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Link>
             </div>
-          </div>
-        );
-      })}
-    </div>
-  </div>
-</section>
 
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch mt-8">
+            {/* Left: Video */}
+           
+
+            {/* Middle: English Reports */}
+            <ReportColumn title="Reports (English)" items={englishReports} dir="ltr" />
+
+            {/* Right: Arabic Reports */}
+            <ReportColumn title="التقارير (العربية)" items={arabicReports} dir="rtl" lang="ar" />
+          </div>
+        </div>
+      </section>
 
       {/* Services Section */}
       <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-bold text-navy-800 mb-8">Core Services & Expertise</h2>
+            <h2 className="text-5xl md:text-6xl font-bold text-navy-800 mb-8">
+              Services & Capabilities
+            </h2>
             <p className="text-xl text-navy-600 max-w-4xl mx-auto">
-              Comprehensive financial engineering solutions for complex infrastructure and asset securitization projects.
+              Everything needed to launch, sell, operate, and report on a premium transit media network.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="space-y-4">
               {services.map((service, index) => (
-                <div 
+                <div
                   key={index}
                   onClick={() => setActiveService(index)}
                   className={`p-6 rounded-xl border-2 cursor-pointer transition-all duration-300 ${
-                    activeService === index 
-                      ? 'border-gold-500 bg-gold-50' 
-                      : 'border-navy-200 bg-white hover:border-gold-300'
+                    activeService === index
+                      ? "border-gold-500 bg-gold-50"
+                      : "border-navy-200 bg-white hover:border-gold-300"
                   }`}
                 >
                   <div className="flex items-center space-x-4">
-                    <div className={`p-3 rounded-lg ${
-                      activeService === index ? 'text-gold-600' : 'text-navy-600'
-                    }`}>
+                    <div
+                      className={`p-3 rounded-lg ${
+                        activeService === index ? "text-gold-600" : "text-navy-600"
+                      }`}
+                    >
                       {service.icon}
                     </div>
                     <div>
@@ -574,20 +528,24 @@ function App() {
                 </div>
               ))}
             </div>
-            
+
             <div className="bg-gradient-to-br from-navy-50 to-gold-50 p-8 rounded-2xl border border-navy-200">
               <div className="mb-6">
                 <div className="p-4 bg-gold-100 rounded-lg inline-block mb-4">
                   {services[activeService].icon}
                 </div>
-                <h3 className="text-2xl font-bold text-navy-800 mb-4">{services[activeService].title}</h3>
-                <p className="text-lg text-navy-600 mb-6">{services[activeService].description}</p>
+                <h3 className="text-2xl font-bold text-navy-800 mb-4">
+                  {services[activeService].title}
+                </h3>
+                <p className="text-lg text-navy-600 mb-6">
+                  {services[activeService].description}
+                </p>
               </div>
-              
+
               <div className="space-y-3">
                 <h4 className="text-lg font-bold text-navy-800 mb-4">Key Features:</h4>
-                {services[activeService].features.map((feature, index) => (
-                  <div key={index} className="flex items-center space-x-3">
+                {services[activeService].features.map((feature, i) => (
+                  <div key={i} className="flex items-center space-x-3">
                     <CheckCircle className="w-5 h-5 text-gold-600" />
                     <span className="text-navy-700">{feature}</span>
                   </div>
@@ -598,150 +556,88 @@ function App() {
         </div>
       </section>
 
-      {/* Insurance Solutions */}
-      <section id="insurance" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-navy-900 to-navy-800 text-white">
+      {/* Approach / Methodology */}
+      <section
+        id="methodology"
+        className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gold-50 to-navy-50"
+      >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-bold mb-8">Insurance Solutions</h2>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto">
-              Comprehensive insurance products designed for complex financial structures and infrastructure projects.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {insuranceProducts.map((product, index) => (
-              <div key={index} className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
-                <div className="flex items-center space-x-3">
-                  <Shield className="w-6 h-6 text-gold-400" />
-                  <span className="text-lg font-semibold">{product}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Projects Portfolio */}
-      <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-bold text-navy-800 mb-8">Project Portfolio</h2>
+            <h2 className="text-5xl md:text-6xl font-bold text-navy-800 mb-8">
+              Our Approach
+            </h2>
             <p className="text-xl text-navy-600 max-w-4xl mx-auto">
-              Landmark infrastructure and securitization projects that demonstrate our expertise in complex financial structuring.
+              A simple, practical approach to rolling out a transit media network with strong commercial outcomes.
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
-              <div key={index} className="bg-white rounded-2xl shadow-xl border border-navy-100 overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="relative">
-                  <img 
-                    src={project.image} 
-                    alt={project.title}
-                    className="w-full h-64 object-cover"
-                  />
-                  <div className="absolute top-4 right-4">
-                    <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                      project.status === 'Completed' ? 'bg-green-100 text-green-800' :
-                      project.status === 'Active' ? 'bg-blue-100 text-blue-800' :
-                      'bg-yellow-100 text-yellow-800'
-                    }`}>
-                      {project.status}
-                    </span>
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy-900/80 to-transparent"></div>
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <div className="text-2xl font-bold">{project.value}</div>
-                  </div>
-                </div>
-                
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-navy-800 mb-2">{project.title}</h3>
-                  <div className="flex items-center space-x-2 mb-4">
-                    <MapPin className="w-4 h-4 text-gold-600" />
-                    <span className="text-navy-600">{project.location}</span>
-                  </div>
-                  <p className="text-navy-600 leading-relaxed">{project.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Financial Engineering Methodology */}
-      <section id="methodology" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gold-50 to-navy-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-bold text-navy-800 mb-8">Three Pillars of Securitization</h2>
-            <p className="text-xl text-navy-600 max-w-4xl mx-auto">
-              Our proven methodology for transforming complex assets into standardized, tradeable financial instruments.
-            </p>
-          </div>
-          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {securitizationPillars.map((pillar, index) => (
-              <div key={index} className="bg-white p-8 rounded-2xl shadow-xl border border-navy-100 text-center hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+            {methodologyPillars.map((p, idx) => (
+              <div
+                key={idx}
+                className="bg-white p-8 rounded-2xl shadow-xl border border-navy-100 text-center hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+              >
                 <div className="inline-flex p-4 bg-gradient-to-br from-gold-100 to-gold-200 rounded-2xl mb-6">
-                  <div className="text-gold-600">{pillar.icon}</div>
+                  <div className="text-gold-600">{p.icon}</div>
                 </div>
-                <h3 className="text-2xl font-bold text-navy-800 mb-4">{pillar.title}</h3>
-                <p className="text-navy-600 leading-relaxed">{pillar.description}</p>
+                <h3 className="text-2xl font-bold text-navy-800 mb-4">{p.title}</h3>
+                <p className="text-navy-600 leading-relaxed">{p.description}</p>
               </div>
             ))}
           </div>
-          
-          <div className="mt-16 bg-white p-8 rounded-2xl shadow-xl border border-navy-100">
-            <div className="text-center">
-              <h3 className="text-3xl font-bold text-navy-800 mb-6">Global Reach & Impact</h3>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-gold-600 mb-2">66.8M</div>
-                  <div className="text-navy-600 font-medium">Hectares Under Management</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-gold-600 mb-2">15+</div>
-                  <div className="text-navy-600 font-medium">International Markets</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-gold-600 mb-2">$25B+</div>
-                  <div className="text-navy-600 font-medium">Total Transaction Value</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-gold-600 mb-2">25%</div>
-                  <div className="text-navy-600 font-medium">LTV Ratio Improvement</div>
-                </div>
-              </div>
-            </div>
+        </div>
+      </section>
+
+      {/* Map Section (Bottom) */}
+      <section id="map" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-4xl md:text-5xl font-bold text-navy-800">Riyadh Transit Map</h2>
+            <p className="text-lg text-navy-600 mt-3">
+              Replace this embed with your official transit map (image or interactive map) when ready.
+            </p>
+          </div>
+
+          <div className="rounded-2xl overflow-hidden shadow-xl border border-navy-100">
+            <iframe
+              title="Riyadh Map"
+              className="w-full h-[520px]"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=Riyadh&output=embed"
+            />
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-navy-900 to-navy-800 text-white">
+      <section
+        id="contact"
+        className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-navy-900 to-navy-800 text-white"
+      >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-bold mb-8">Partner With Us</h2>
+            <h2 className="text-5xl md:text-6xl font-bold mb-8">Contact</h2>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
-              Ready to transform your assets into global opportunities? Let's discuss how FE Corporation can engineer your next financial breakthrough.
+              Want to collaborate on transit media, sponsorships, or campaign reporting? Let’s talk.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
               <h3 className="text-3xl font-bold mb-8">Get in Touch</h3>
-              
+
               <div className="space-y-6">
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-gold-600 rounded-lg flex items-center justify-center">
                     <MapPin className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <div className="font-semibold">Headquarters</div>
-                    <div className="text-white/80">325 Front Street, Suite 300, Toronto, Ontario, M5V-2Y1</div>
+                    <div className="font-semibold">Location</div>
+                    <div className="text-white/80">Riyadh, Saudi Arabia</div>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-gold-600 rounded-lg flex items-center justify-center">
                     <Phone className="w-6 h-6 text-white" />
@@ -751,149 +647,57 @@ function App() {
                     <div className="text-white/80">+1–416-623-6345</div>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-gold-600 rounded-lg flex items-center justify-center">
                     <Mail className="w-6 h-6 text-white" />
                   </div>
                   <div>
                     <div className="font-semibold">Email</div>
-                    <div className="text-white/80">inquiries@fecorporation.ca</div>
+                    <div className="text-white/80">inquiries@riyadhtransit.com</div>
                   </div>
                 </div>
               </div>
-              
+
               <div className="mt-12">
-                <h4 className="text-xl font-bold mb-4">Areas of Expertise</h4>
+                <h4 className="text-xl font-bold mb-4">Topics</h4>
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="flex items-center space-x-2">
-                    <CheckCircle className="w-4 h-4 text-gold-400" />
-                    <span className="text-sm">Infrastructure Financing</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <CheckCircle className="w-4 h-4 text-gold-400" />
-                    <span className="text-sm">Asset Securitization</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <CheckCircle className="w-4 h-4 text-gold-400" />
-                    <span className="text-sm">Insurance-Linked Securities</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <CheckCircle className="w-4 h-4 text-gold-400" />
-                    <span className="text-sm">Cross-Border Structuring</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <CheckCircle className="w-4 h-4 text-gold-400" />
-                    <span className="text-sm">Regulatory Navigation</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <CheckCircle className="w-4 h-4 text-gold-400" />
-                    <span className="text-sm">Risk Management</span>
-                  </div>
+                  {[
+                    "Transit Media Rollout",
+                    "Sponsorship Packages",
+                    "Campaign Planning",
+                    "Performance Reporting",
+                    "Partnership Models",
+                    "Governance & Compliance",
+                  ].map((t) => (
+                    <div key={t} className="flex items-center space-x-2">
+                      <CheckCircle className="w-4 h-4 text-gold-400" />
+                      <span className="text-sm">{t}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
-            
-           
-           
-            {/* <div className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
-              <h3 className="text-2xl font-bold mb-6">Start a Conversation</h3>
-              
-              {submitMessage && (
-                <div className={`p-4 rounded-lg mb-6 ${
-                  submitSuccess 
-                    ? 'bg-green-100 border border-green-300 text-green-800' 
-                    : 'bg-red-100 border border-red-300 text-red-800'
-                }`}>
-                  {submitMessage}
-                </div>
-              )}
-              
-              <form onSubmit={handleContactFormSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium mb-2">First Name *</label>
-                    <input 
-                      type="text" 
-                      name="firstName"
-                      value={contactForm.firstName}
-                      onChange={handleContactFormChange}
-                      required
-                      className="w-full px-4 py-3 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/60 focus:outline-none focus:border-gold-400"
-                      placeholder="John"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Last Name *</label>
-                    <input 
-                      type="text" 
-                      name="lastName"
-                      value={contactForm.lastName}
-                      onChange={handleContactFormChange}
-                      required
-                      className="w-full px-4 py-3 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/60 focus:outline-none focus:border-gold-400"
-                      placeholder="Doe"
-                    />
-                  </div>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium mb-2">Email *</label>
-                  <input 
-                    type="email" 
-                    name="email"
-                    value={contactForm.email}
-                    onChange={handleContactFormChange}
-                    required
-                    className="w-full px-4 py-3 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/60 focus:outline-none focus:border-gold-400"
-                    placeholder="john.doe@company.com"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium mb-2">Company</label>
-                  <input 
-                    type="text" 
-                    name="company"
-                    value={contactForm.company}
-                    onChange={handleContactFormChange}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/60 focus:outline-none focus:border-gold-400"
-                    placeholder="Your Company"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium mb-2">Project Details *</label>
-                  <textarea 
-                    rows={4}
-                    name="projectDetails"
-                    value={contactForm.projectDetails}
-                    onChange={handleContactFormChange}
-                    required
-                    className="w-full px-4 py-3 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/60 focus:outline-none focus:border-gold-400"
-                    placeholder="Tell us about your project or financing needs..."
-                  ></textarea>
-                </div>
-                
-                <button 
-                  type="submit"
-                  disabled={isSubmitting}
-                  className={`w-full px-8 py-4 font-bold rounded-lg transition-all duration-300 shadow-lg ${
-                    isSubmitting 
-                      ? 'bg-gray-500 cursor-not-allowed' 
-                      : 'bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700'
-                  } text-white`}
-                >
-                  {isSubmitting ? 'Sending...' : 'Send Inquiry'}
-                </button>
-              </form>
-            </div> */}
+
+            {/* Existing ContactForm component */}
             <ContactForm />
-          
-          
-          
-          
+
+            {/* If you prefer your inline form logic, you can swap ContactForm back to the commented form.
+                Your handlers are still in this file (handleContactFormChange, handleContactFormSubmit). */}
           </div>
+
+          {/* Optional: keep message UI if using inline form */}
+          {submitMessage && (
+            <div
+              className={`mt-10 p-4 rounded-lg border max-w-3xl mx-auto ${
+                submitSuccess
+                  ? "bg-green-100 border-green-300 text-green-800"
+                  : "bg-red-100 border-red-300 text-red-800"
+              }`}
+            >
+              {submitMessage}
+            </div>
+          )}
         </div>
       </section>
 
@@ -903,27 +707,23 @@ function App() {
           <div className="text-center">
             <div className="flex items-center justify-center space-x-4 mb-6">
               <div className="w-12 h-12 bg-gradient-to-br from-gold-500 to-gold-600 rounded-lg flex items-center justify-center">
-                <Landmark className="w-8 h-8 text-white" />
+                <Bus className="w-8 h-8 text-white" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold">FE Corporation</h3>
-                <p className="text-white/60">Financial Engineering Corporation</p>
+                <h3 className="text-2xl font-bold">Riyadh Transportation Marketing</h3>
+                <p className="text-white/60">Transit Media • Reports • Map</p>
               </div>
             </div>
-            
+
             <div className="border-t border-white/20 pt-8">
-              <p className="text-white/60 mb-4">
-                © 2025 Financial Engineering Corporation. All rights reserved.
-              </p>
-              <p className="text-white/40 text-sm">
-                Transforming assets into global opportunities through sophisticated financial engineering.
-              </p>
+              <p className="text-white/60 mb-4">© 2025 Riyadh Transportation Marketing. All rights reserved.</p>
+              {/* <p className="text-white/40 text-sm">
+                A bilingual transit marketing hub with video, reports, and route context.
+              </p> */}
             </div>
           </div>
         </div>
       </footer>
     </div>
-  )
+  );
 }
-
-export default App

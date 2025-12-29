@@ -51,7 +51,7 @@ const TeamMemberPage: React.FC = () => {
             </div>
             <div>
               <p className="text-sm text-white/60">Financial Engineering Corporation</p>
-              <h1 className="text-xl font-bold">FE Corporation</h1>
+              <h1 className="text-xl font-bold">Riyadh Transportation Marketing</h1>
             </div>
           </div>
 
@@ -127,10 +127,10 @@ const TeamMemberPage: React.FC = () => {
             <div className="bg-white/5 border border-white/10 rounded-2xl p-6 shadow-premium">
               <h3 className="text-lg font-semibold mb-4 flex items-center">
                 <Users className="w-5 h-5 text-gold-300 mr-2" />
-                Role at FE Corporation
+                Role at Riyadh Transportation Marketing
               </h3>
               <p className="text-sm text-white/80 leading-relaxed mb-4">
-                {member.name.split(" ")[0]} plays a central role in FE Corporation&apos;s
+                {member.name.split(" ")[0]} plays a central role in Riyadh Transportation Marketing&apos;s
                 mission to transform real-world assets into predictable, securable and
                 standardized financial instruments.
               </p>
