@@ -17,6 +17,7 @@ import {
   MapPin,
   Layers,
   Zap,
+  BookOpen,
 } from "lucide-react";
 import "./App.css";
 
@@ -118,26 +119,28 @@ const methodologyPillars: Pillar[] = [
 ];
 
 const englishReports: ReportItem[] = [
-  { title: "Digital Buses Riyadh (EN)", href: "/reports/en/Digital Buses Riyadh.pdf" },
-  { title: "Briefing Document (EN)", href: "/reports/en/Briefing Document.pdf" },
-  { title: "Riyadh Bus Digital Advertising Business Plan (EN)", href: "/reports/en/BUS - Riyhad  Business Plan.pdf" },
-  { title: "Theme – Riyadh Bus (EN)", href: "/reports/en/Theme Riyadh Bus.pdf" },
-  { title: "Business Case (EN)", href: "/reports/en/Business Case.pdf" },
-  { title: "Investment Proposal (EN)", href: "/reports/en/Investment Proposal.pdf" },
-  { title: "PMP - Bus Service (EN)", href: "/reports/en/PMP - Bus Service.pdf" },
-  { title: "Prospectus Riyadh Bus Co. (EN)", href: "/reports/en/Prospectus Riyadh Bus Co..pdf" },
-  { title: "Risk Analysis Report (EN)", href: "/reports/en/Risk Analysis Report.pdf" },
-  { title: "Riyadh Study (EN)", href: "/reports/en/Riyadh Study.pdf" },
-  { title: "Strategic Implementation Plan (EN)", href: "/reports/en/Strategic Implementation Plan.pdf" },
+  { title: "1.Lenot Investments (EN)", href: "/reports/en/1. LENOT INVESTMENTS.pdf" },
+  { title: "1.1 Table of Contents (EN)", href: "/reports/en/1.1 Table of Contents.pdf" },
+  { title: "2.Project Overview.pdf (EN)", href: "/reports/en/2. Project Overview.pdf" },
+  { title: "2.1 Advertising Study (EN)", href: "/reports/en/2.1 Advertising Study.pdf" },
+  { title: "3.Feasibility Study (EN)", href: "/reports/en/3. Feasibility Study.pdf" },
+  { title: "4.Business Case Study (EN)", href: "/reports/en/4.2 Business Case Study.pdf" },
+  { title: "5.Business Plan (EN)", href: "/reports/en/5. Business Plan.pdf" },
+  { title: "6.Implementation Plan (EN)", href: "/reports/en/6. Implementation Plan.pdf" },
+  { title: "7.Project Management Process (EN)", href: "/reports/en/7. Project Management Process.pdf" },
+  { title: "8.Investment Proposal (EN)", href: "/reports/en/8. Investment Proposal.pdf" },
+  { title: "9.Prospectus (EN)", href: "/reports/en/9. Prospectus..pdf" },
+  { title: "10. Risk Analysis (EN)", href: "/reports/en/10. Risk Analysis.pdf" },
+  { title: "11. VIDEOTRONIC TECHNOLOGY (EN)", href: "/reports/en/11. VIDEOTRONIC TECHNOLOGY.pdf" },
 ];
 
 const arabicReports: ReportItem[] = [
-  { title: "حافلات الرياض تتحول إلى رقمية", href: "/reports/ar/حافلات الرياض تتحول إلى رقمية.pdf" },
-  { title: "حافلات الرياض تحصل على تجديد رقمي", href: "/reports/ar/حافلات الرياض تحصل على تجديد رقمي.pdf" },
-  { title: "خطة التنفيذ الاستراتيجية", href: "/reports/ar/خطة التنفيذ الاستراتيجية.pdf" },
-  { title: "دراسة جدوى حافلات الرياض", href: "/reports/ar/دراسة جدوى حافلات الرياض.pdf" },
-  { title: "تقرير تحليل المخاطر", href: "/reports/ar/تقرير تحليل المخاطر.pdf" },
-  { title: "اقتراح استثماري", href: "/reports/ar/اقتراح استثماري.pdf" },
+  // { title: "حافلات الرياض تتحول إلى رقمية", href: "/reports/ar/حافلات الرياض تتحول إلى رقمية.pdf" },
+  // { title: "حافلات الرياض تحصل على تجديد رقمي", href: "/reports/ar/حافلات الرياض تحصل على تجديد رقمي.pdf" },
+  // { title: "خطة التنفيذ الاستراتيجية", href: "/reports/ar/خطة التنفيذ الاستراتيجية.pdf" },
+  // { title: "دراسة جدوى حافلات الرياض", href: "/reports/ar/دراسة جدوى حافلات الرياض.pdf" },
+  // { title: "تقرير تحليل المخاطر", href: "/reports/ar/تقرير تحليل المخاطر.pdf" },
+  // { title: "اقتراح استثماري", href: "/reports/ar/اقتراح استثماري.pdf" },
 ];
 
 function ReportColumn({
@@ -462,6 +465,27 @@ export default function App() {
                   controls
                   className="w-full h-auto object-cover"
                 /> 
+
+                {/* <iframe
+      allowFullScreen={true}
+      allow="clipboard-write"
+      scrolling="no"
+      className="fp-iframe"
+      style={{ 
+        border: '1px solid lightgray', 
+        width: '100%', 
+        height: '400px' 
+      }}
+      src="https://heyzine.com/flip-book/5d3d1c960b.html"
+      title="Heyzine Flipbook"
+    /> */}
+
+
+       
+
+
+
+
               </div>
             </div>
 
@@ -469,6 +493,51 @@ export default function App() {
             <ReportColumn title="Investment Documents (English)" items={englishReports} dir="ltr" />
             <ReportColumn title="وثائق الاستثمار (العربية)" items={arabicReports} dir="rtl" lang="ar" />
           </div>
+
+           <div className="bg-white rounded-2xl shadow-xl border border-navy-100 p-6 h-full flex flex-col mb-8 mt-8">
+              <div className="flex items-center gap-3 mb-4">
+                <BookOpen className="w-6 h-6 text-gold-600" />
+                <h3 className="text-2xl font-bold text-navy-800">Flipbook</h3>
+              </div>
+
+              <div className="rounded-xl overflow-hidden border border-navy-100 bg-black">
+                {/* <iframe width="100%" height="660" src="https://www.youtube.com/embed/i0R1F4_eGQM?si=jeU2KrKV5Qq6bIWG" title="Riyadh Bus Media" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                <video
+                  src="/video/1.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                  className="w-full h-auto object-cover"
+                />  */}
+
+                <iframe
+      allowFullScreen={true}
+      allow="clipboard-write"
+      scrolling="no"
+      className="fp-iframe"
+      style={{ 
+        border: '1px solid lightgray', 
+        width: '100%', 
+        height: '600px' 
+      }}
+      src="https://heyzine.com/flip-book/5d3d1c960b.html"
+      title="Heyzine Flipbook"
+    />
+
+
+       
+
+
+
+
+              </div>
+            </div>
+
+
+
+
         </div>
       </section>
 
