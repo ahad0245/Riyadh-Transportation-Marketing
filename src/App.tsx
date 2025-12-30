@@ -119,19 +119,19 @@ const methodologyPillars: Pillar[] = [
 ];
 
 const englishReports: ReportItem[] = [
-  { title: "1.Lenot Investments (EN)", href: "/reports/en/1. LENOT INVESTMENTS.pdf" },
+  { title: "1. Lenot Investments (EN)", href: "/reports/en/1. LENOT INVESTMENTS.pdf" },
   { title: "1.1 Table of Contents (EN)", href: "/reports/en/1.1 Table of Contents.pdf" },
-  { title: "2.Project Overview.pdf (EN)", href: "/reports/en/2. Project Overview.pdf" },
+  { title: "2. Project Overview.pdf (EN)", href: "/reports/en/2. Project Overview.pdf" },
   { title: "2.1 Advertising Study (EN)", href: "/reports/en/2.1 Advertising Study.pdf" },
-  { title: "3.Feasibility Study (EN)", href: "/reports/en/3. Feasibility Study.pdf" },
-  { title: "4.Business Case Study (EN)", href: "/reports/en/4.2 Business Case Study.pdf" },
-  { title: "5.Business Plan (EN)", href: "/reports/en/5. Business Plan.pdf" },
-  { title: "6.Implementation Plan (EN)", href: "/reports/en/6. Implementation Plan.pdf" },
-  { title: "7.Project Management Process (EN)", href: "/reports/en/7. Project Management Process.pdf" },
-  { title: "8.Investment Proposal (EN)", href: "/reports/en/8. Investment Proposal.pdf" },
-  { title: "9.Prospectus (EN)", href: "/reports/en/9. Prospectus..pdf" },
+  { title: "3. Feasibility Study (EN)", href: "/reports/en/3. Feasibility Study.pdf" },
+  { title: "4. Business Case Study (EN)", href: "/reports/en/4.2 Business Case Study.pdf" },
+  { title: "5. Business Plan (EN)", href: "/reports/en/5. Business Plan.pdf" },
+  { title: "6. Implementation Plan (EN)", href: "/reports/en/6. Implementation Plan.pdf" },
+  { title: "7. Project Management Process (EN)", href: "/reports/en/7. Project Management Process.pdf" },
+  { title: "8. Investment Proposal (EN)", href: "/reports/en/8. Investment Proposal.pdf" },
+  { title: "9. Prospectus (EN)", href: "/reports/en/9. Prospectus..pdf" },
   { title: "10. Risk Analysis (EN)", href: "/reports/en/10. Risk Analysis.pdf" },
-  { title: "11. VIDEOTRONIC TECHNOLOGY (EN)", href: "/reports/en/11. VIDEOTRONIC TECHNOLOGY.pdf" },
+  { title: "11. Videotronic Technology (EN)", href: "/reports/en/11. VIDEOTRONIC TECHNOLOGY.pdf" },
 ];
 
 const arabicReports: ReportItem[] = [
